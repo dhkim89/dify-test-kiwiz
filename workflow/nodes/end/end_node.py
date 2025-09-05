@@ -10,6 +10,23 @@ from core.workflow.nodes.enums import ErrorStrategy, NodeType
 
 
 class EndNode(BaseNode):
+    """
+    종료 노드 - 워크플로우 실행을 완료하고 최종 결과를 출력하는 노드
+    
+    주요 기능:
+    - 워크플로우 실행 종료점 정의
+    - 최종 출력 변수 선택 및 포맷팅
+    - 실행 결과 집계 및 요약
+    - 출력 데이터 구조화
+    - 워크플로우 성공/실패 상태 설정
+    
+    사용 예시:
+    - 최종 답변 반환
+    - 처리 결과 요약
+    - 생성된 파일 출력
+    - 계산 결과 반환
+    - 상태 보고서 생성
+    """
     _node_type = NodeType.END
 
     _node_data: EndNodeData

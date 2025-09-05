@@ -14,6 +14,23 @@ MAX_TEMPLATE_TRANSFORM_OUTPUT_LENGTH = int(os.environ.get("TEMPLATE_TRANSFORM_MA
 
 
 class TemplateTransformNode(BaseNode):
+    """
+    템플릿 변환 노드 - Jinja2 템플릿을 사용하여 텍스트 변환을 수행하는 노드
+    
+    주요 기능:
+    - Jinja2 템플릿 엔진 사용
+    - 동적 변수 치환 및 템플릿 렌더링
+    - 조건문, 반복문, 필터 지원
+    - 텍스트 포맷팅 및 문자열 조작
+    - 출력 길이 제한 적용
+    
+    사용 예시:
+    - 이메일 템플릿 생성
+    - API 요청 본문 구성
+    - 동적 SQL 쿼리 생성
+    - 보고서 포맷팅
+    - 다국어 메시지 템플릿
+    """
     _node_type = NodeType.TEMPLATE_TRANSFORM
 
     _node_data: TemplateTransformNodeData

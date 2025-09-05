@@ -60,9 +60,25 @@ logger = logging.getLogger(__name__)
 
 class IterationNode(BaseNode):
     """
-    Iteration Node.
+    반복 노드 - 배열 데이터의 각 요소에 대해 워크플로우를 반복 실행하는 노드
+    
+    주요 기능:
+    - 배열의 각 요소에 대한 순차/병렬 실행
+    - 반복 컨텍스트 제공 (현재 인덱스, 현재 항목)
+    - 중첩 워크플로우 실행 및 관리
+    - 오류 처리 전략 (계속/중단/비정상 제거)
+    - 병렬 실행 지원 (성능 최적화)
+    - 반복별 실행 시간 및 메타데이터 추적
+    - 동적 출력 수집 및 집계
+    - 메모리 관리 및 리소스 정리
+    
+    사용 예시:
+    - 배치 데이터 처리
+    - 파일 목록 일괄 처리
+    - 다중 API 호출
+    - 반복적 분석 작업
+    - 데이터 변환 파이프라인
     """
-
     _node_type = NodeType.ITERATION
 
     _node_data: IterationNodeData

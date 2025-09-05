@@ -24,6 +24,22 @@ from .exc import (
 
 
 class CodeNode(BaseNode):
+    """
+    코드 노드 - Python/JavaScript 코드를 실행하여 데이터 처리를 수행하는 노드
+    
+    주요 기능:
+    - Python3 또는 JavaScript 코드 실행
+    - 입력 변수를 코드로 전달하여 처리
+    - 코드 실행 결과를 출력 변수로 반환
+    - 코드 실행 보안 및 리소스 제한 적용
+    - 출력값 타입 검증 및 길이 제한
+    
+    사용 예시:
+    - 데이터 변환 및 계산 로직
+    - 문자열 조작 및 포맷팅
+    - 배열/객체 데이터 처리
+    - API 응답 데이터 가공
+    """
     _node_type = NodeType.CODE
 
     _node_data: CodeNodeData

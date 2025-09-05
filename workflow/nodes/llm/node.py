@@ -95,6 +95,25 @@ logger = logging.getLogger(__name__)
 
 
 class LLMNode(BaseNode):
+    """
+    LLM 노드 - 대화형 언어 모델과의 상호작용을 처리하는 노드
+    
+    주요 기능:
+    - Chat/Completion 모델 지원 (GPT, Claude, Gemini 등)
+    - 프롬프트 템플릿 처리 및 변수 대체
+    - 컨텍스트 및 메모리 관리
+    - 스트리밍 응답 지원
+    - 구조화된 출력 지원 (JSON Schema)
+    - 멀티모달 입력 지원 (텍스트, 이미지, 파일)
+    - 토큰 사용량 추적 및 비용 계산
+    
+    사용 예시:
+    - 텍스트 생성 및 대화
+    - 문서 요약 및 분석
+    - 코드 생성 및 리뷰
+    - 번역 및 언어 처리
+    - 질의응답 시스템
+    """
     _node_type = NodeType.LLM
 
     _node_data: LLMNodeData

@@ -11,6 +11,23 @@ from core.workflow.nodes.start.entities import StartNodeData
 
 
 class StartNode(BaseNode):
+    """
+    시작 노드 - 워크플로우 실행의 진입점이 되는 노드
+    
+    주요 기능:
+    - 워크플로우 실행 시작점 정의
+    - 사용자 입력 변수 수집 및 전달
+    - 시스템 변수 초기화 (conversation_id, user_id 등)
+    - 워크플로우 실행 컨텍스트 설정
+    - 입력 데이터 검증 및 형변환
+    
+    사용 예시:
+    - 사용자로부터 질문 받기
+    - 파일 업로드 처리
+    - API 요청 데이터 수신
+    - 폼 데이터 수집
+    - 초기 설정값 정의
+    """
     _node_type = NodeType.START
 
     _node_data: StartNodeData

@@ -87,9 +87,25 @@ def extract_json(text):
 
 class ParameterExtractorNode(BaseNode):
     """
-    Parameter Extractor Node.
+    매개변수 추출 노드 - 자연어 텍스트에서 구조화된 매개변수를 추출하는 노드
+    
+    주요 기능:
+    - Function Calling을 통한 정확한 매개변수 추출
+    - Prompt Engineering을 통한 호환성 확보
+    - JSON Schema 기반 출력 구조 정의
+    - 다양한 데이터 타입 지원 (string, number, boolean, array 등)
+    - 필수/선택 매개변수 검증
+    - Select 옵션 값 검증
+    - 메모리 기반 대화 컨텍스트 활용
+    - 비전(Vision) 입력 지원
+    
+    사용 예시:
+    - 폼 데이터 자동 추출
+    - API 파라미터 파싱
+    - 사용자 의도 분석
+    - 구조화된 데이터 생성
+    - 복잡한 쿼리 파싱
     """
-
     _node_type = NodeType.PARAMETER_EXTRACTOR
 
     _node_data: ParameterExtractorNodeData

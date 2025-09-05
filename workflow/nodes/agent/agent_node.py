@@ -60,9 +60,24 @@ from .exc import (
 
 class AgentNode(BaseNode):
     """
-    Agent Node
+    에이전트 노드 - 플러그인 기반 AI 에이전트를 실행하는 노드
+    
+    주요 기능:
+    - 다양한 AI 에이전트 플러그인 실행 (MCP, Custom Agent 등)
+    - 도구(Tools) 연동 및 자동 호출
+    - 멀티 단계 추론 및 계획 수립
+    - 메모리 기반 대화 컨텍스트 관리
+    - 구조화된 출력 및 변수 반환
+    - 실행 로그 및 사고 과정 추적
+    - 파일 생성 및 처리 지원
+    
+    사용 예시:
+    - 복잡한 문제 해결
+    - 멀티 도구 활용 작업
+    - 자율적 작업 수행
+    - 분석 및 리서치
+    - 창작 및 생성 작업
     """
-
     _node_type = NodeType.AGENT
     _node_data: AgentNodeData
 

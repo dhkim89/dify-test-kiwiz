@@ -84,6 +84,26 @@ default_retrieval_model = {
 
 
 class KnowledgeRetrievalNode(BaseNode):
+    """
+    지식 검색 노드 - 지식베이스에서 관련 정보를 검색하는 노드
+    
+    주요 기능:
+    - 벡터 기반 의미적 검색 (Semantic Search)
+    - 키워드 기반 전문 검색 (Full-text Search)
+    - 하이브리드 검색 및 가중치 조정
+    - 리랭킹 모델을 통한 검색 결과 최적화
+    - 메타데이터 필터링 (수동/자동)
+    - 단일/다중 데이터셋 검색
+    - 점수 임계값 기반 결과 필터링
+    - 검색 결과 구조화 및 인용 정보 제공
+    
+    사용 예시:
+    - RAG 시스템 구축
+    - 문서 기반 질의응답
+    - 지식베이스 검색
+    - 컨텍스트 기반 정보 제공
+    - 참조 자료 수집
+    """
     _node_type = NodeType.KNOWLEDGE_RETRIEVAL
 
     _node_data: KnowledgeRetrievalNodeData

@@ -34,6 +34,25 @@ logger = logging.getLogger(__name__)
 
 
 class HttpRequestNode(BaseNode):
+    """
+    HTTP 요청 노드 - 외부 API나 웹 서비스와 HTTP 통신을 수행하는 노드
+    
+    주요 기능:
+    - GET, POST, PUT, DELETE 등 모든 HTTP 메서드 지원
+    - 헤더, 쿼리 파라미터, 요청 본문 구성
+    - JSON, Form-data, Raw text 등 다양한 데이터 형식 지원
+    - 인증 방식 지원 (Bearer Token, Basic Auth 등)
+    - 파일 업로드 및 다운로드 지원
+    - SSL 검증 및 타임아웃 설정
+    - 오류 처리 및 재시도 로직
+    
+    사용 예시:
+    - REST API 호출
+    - 웹훅 전송
+    - 파일 다운로드
+    - 써드파티 서비스 연동
+    - 데이터 동기화
+    """
     _node_type = NodeType.HTTP_REQUEST
 
     _node_data: HttpRequestNodeData

@@ -45,6 +45,25 @@ if TYPE_CHECKING:
 
 
 class QuestionClassifierNode(BaseNode):
+    """
+    질문 분류 노드 - 사용자의 질문이나 입력을 미리 정의된 카테고리로 분류하는 노드
+    
+    주요 기능:
+    - LLM 기반 자동 텍스트 분류
+    - 사용자 정의 카테고리 설정
+    - 분류 조건 및 설명 추가 가능
+    - 분류 결과에 따른 워크플로우 분기
+    - 메모리 기반 대화 컨텍스트 활용
+    - 비전(Vision) 입력 지원
+    - JSON 형태의 구조화된 분류 결과 반환
+    
+    사용 예시:
+    - 고객 지원 티켓 분류
+    - 의도 분석 및 라우팅
+    - 감정 분석 및 카테고리화
+    - 콘텐츠 주제별 분류
+    - 질의 유형 식별
+    """
     _node_type = NodeType.QUESTION_CLASSIFIER
 
     _node_data: QuestionClassifierNodeData

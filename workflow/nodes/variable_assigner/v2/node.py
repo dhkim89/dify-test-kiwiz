@@ -54,6 +54,25 @@ def _source_mapping_from_item(mapping: MutableMapping[str, Sequence[str]], node_
 
 
 class VariableAssignerNode(BaseNode):
+    """
+    변수 할당 노드 - 워크플로우 내에서 변수의 값을 설정하고 조작하는 노드
+    
+    주요 기능:
+    - 변수값 설정 및 덮어쓰기 (SET, OVER_WRITE)
+    - 숫자 연산 (ADD, SUBTRACT, MULTIPLY, DIVIDE)
+    - 배열 조작 (APPEND, EXTEND, REMOVE_FIRST, REMOVE_LAST)
+    - 변수 초기화 (CLEAR)
+    - 상수값 또는 다른 변수 참조로 할당
+    - 대화 변수 업데이트 지원
+    - 타입별 입력값 검증
+    
+    사용 예시:
+    - 계산 결과 저장
+    - 배열 데이터 조작
+    - 조건부 변수 설정
+    - 카운터 증감
+    - 데이터 누적 및 집계
+    """
     _node_type = NodeType.VARIABLE_ASSIGNER
 
     _node_data: VariableAssignerNodeData

@@ -15,6 +15,24 @@ from core.workflow.utils.condition.processor import ConditionProcessor
 
 
 class IfElseNode(BaseNode):
+    """
+    IF/ELSE 조건 분기 노드 - 조건에 따라 워크플로우의 실행 경로를 제어하는 노드
+    
+    주요 기능:
+    - 다중 조건 평가 (AND, OR 논리 연산)
+    - 변수 값 비교 (equal, not_equal, greater_than, less_than 등)
+    - 문자열 패턴 매칭 (contains, starts_with, ends_with)
+    - 배열/객체 검증 (is_empty, is_not_empty)
+    - Case 기반 분기 처리
+    - 조건 결과에 따른 출력 경로 선택
+    
+    사용 예시:
+    - 사용자 입력 검증
+    - 데이터 품질 체크
+    - 조건부 워크플로우 분기
+    - 상태 기반 로직 처리
+    - 예외 상황 핸들링
+    """
     _node_type = NodeType.IF_ELSE
 
     _node_data: IfElseNodeData

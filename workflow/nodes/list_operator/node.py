@@ -37,6 +37,26 @@ def _negation(filter_: Callable[[_T], bool]) -> Callable[[_T], bool]:
 
 
 class ListOperatorNode(BaseNode):
+    """
+    리스트 연산 노드 - 배열 데이터에 대한 다양한 조작 및 연산을 수행하는 노드
+    
+    주요 기능:
+    - 배열 필터링 (조건 기반 요소 선택)
+    - 배열 정렬 (오름차순/내림차순)
+    - 배열 슬라이싱 (특정 범위 추출)
+    - 배열 인덱스 추출 (특정 위치 요소)
+    - 다양한 데이터 타입 지원 (문자열, 숫자, 파일, 불린)
+    - 복합 필터 조건 (contains, equals, greater_than 등)
+    - 파일 메타데이터 기반 필터링
+    - 첫 번째/마지막 레코드 자동 추출
+    
+    사용 예시:
+    - 검색 결과 필터링
+    - 데이터 정렬 및 순위
+    - 조건부 리스트 처리
+    - 파일 목록 관리
+    - 상위 N개 항목 선택
+    """
     _node_type = NodeType.LIST_OPERATOR
 
     _node_data: ListOperatorNodeData
