@@ -1,0 +1,765 @@
+{
+  "info": {
+    "_postman_id": "12345678-1234-5678-9012-123456789012",
+    "name": "Simple Workflow Node Tester",
+    "description": "간단한 워크플로우 노드 테스터 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12345678"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8003",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "API Info",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Supported Node Types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/node-types",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "node-types"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Code Node - Simple Math",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"code\",\n  \"config\": {\n    \"code\": \"result = inputs['number'] * 2\\noutput = {'doubled': result, 'original': inputs['number']}\",\n    \"code_language\": \"python3\"\n  },\n  \"inputs\": {\n    \"number\": 10\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Code Node - String Processing",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"code\",\n  \"config\": {\n    \"code\": \"text = inputs.get('text', '')\\nprocessed = text.upper().replace(' ', '_')\\noutput = {'processed_text': processed, 'length': len(text)}\",\n    \"code_language\": \"python3\"\n  },\n  \"inputs\": {\n    \"text\": \"hello world from dify\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Template Transform Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"template_transform\",\n  \"config\": {\n    \"template\": \"안녕하세요, {{name}}님! 오늘은 {{date}}입니다. 당신의 점수는 {{score}}점입니다.\"\n  },\n  \"inputs\": {\n    \"name\": \"홍길동\",\n    \"date\": \"2024-01-15\",\n    \"score\": 95\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test HTTP Request Node - GitHub API",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"http_request\",\n  \"config\": {\n    \"method\": \"GET\",\n    \"url\": \"https://api.github.com/users/{{username}}\",\n    \"headers\": {\n      \"User-Agent\": \"Dify-Test\"\n    }\n  },\n  \"inputs\": {\n    \"username\": \"octocat\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test HTTP Request Node - JSONPlaceholder",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"http_request\",\n  \"config\": {\n    \"method\": \"GET\",\n    \"url\": \"https://jsonplaceholder.typicode.com/posts/{{post_id}}\",\n    \"headers\": {}\n  },\n  \"inputs\": {\n    \"post_id\": 1\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Variable Assigner Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"variable_assigner\",\n  \"config\": {\n    \"assignments\": [\n      {\n        \"variable\": \"greeting\",\n        \"value\": \"안녕하세요\"\n      },\n      {\n        \"variable\": \"full_name\",\n        \"value\": \"{{first_name}} {{last_name}}\"\n      },\n      {\n        \"variable\": \"age_message\",\n        \"value\": \"나이: {{age}}세\"\n      }\n    ]\n  },\n  \"inputs\": {\n    \"first_name\": \"김\",\n    \"last_name\": \"철수\",\n    \"age\": 25\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test IF-ELSE Node - Pass Condition",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"if_else\",\n  \"config\": {\n    \"conditions\": [\n      {\n        \"variable\": \"score\",\n        \"comparison_operator\": \"gte\",\n        \"value\": 80\n      }\n    ],\n    \"logical_operator\": \"and\"\n  },\n  \"inputs\": {\n    \"score\": 95\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test IF-ELSE Node - Fail Condition",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"if_else\",\n  \"config\": {\n    \"conditions\": [\n      {\n        \"variable\": \"score\",\n        \"comparison_operator\": \"gte\",\n        \"value\": 80\n      }\n    ],\n    \"logical_operator\": \"and\"\n  },\n  \"inputs\": {\n    \"score\": 65\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test IF-ELSE Node - Multiple Conditions (AND)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"if_else\",\n  \"config\": {\n    \"conditions\": [\n      {\n        \"variable\": \"score\",\n        \"comparison_operator\": \"gte\",\n        \"value\": 80\n      },\n      {\n        \"variable\": \"attendance\",\n        \"comparison_operator\": \"gt\",\n        \"value\": 90\n      }\n    ],\n    \"logical_operator\": \"and\"\n  },\n  \"inputs\": {\n    \"score\": 95,\n    \"attendance\": 95\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test LLM Node - GPT-4",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"llm\",\n  \"config\": {\n    \"model\": \"gpt-4\",\n    \"prompt_template\": \"질문: {{user_question}}\\n\\n배경정보: {{context}}\\n\\n위 내용을 바탕으로 전문적인 답변을 제공해주세요.\",\n    \"temperature\": 0.7,\n    \"max_tokens\": 500,\n    \"system_prompt\": \"당신은 워크플로우 전문 컨설턴트입니다.\"\n  },\n  \"inputs\": {\n    \"user_question\": \"워크플로우에서 LLM 노드를 어떻게 효과적으로 활용할 수 있나요?\",\n    \"context\": \"KAI Studio 환경에서 프롬프트 갤러리와 MCP 연계 기능을 사용할 예정입니다.\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test LLM Node - Claude-3",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"llm\",\n  \"config\": {\n    \"model\": \"claude-3\",\n    \"prompt_template\": \"다음 정보를 분석하고 요약해주세요:\\n\\n{{data}}\\n\\n분석 결과를 {{format}} 형태로 제공해주세요.\",\n    \"temperature\": 0.3,\n    \"max_tokens\": 800\n  },\n  \"inputs\": {\n    \"data\": \"2024년 AI 워크플로우 시장은 전년 대비 150% 성장했습니다. 주요 동인은 생성형 AI 도입과 자동화 요구 증가입니다.\",\n    \"format\": \"구조화된 보고서\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Question Classifier - Technical Support",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"question_classifier\",\n  \"config\": {\n    \"categories\": [\"기술지원\", \"제품문의\", \"결제문의\", \"일반문의\", \"불만사항\"],\n    \"mode\": \"single\",\n    \"confidence_threshold\": 0.3\n  },\n  \"inputs\": {\n    \"question\": \"API 연동할 때 인증 오류가 계속 발생하는데 어떻게 해결하나요?\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Question Classifier - Multi Category",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"question_classifier\",\n  \"config\": {\n    \"categories\": [\"기술지원\", \"제품문의\", \"결제문의\", \"일반문의\", \"불만사항\"],\n    \"mode\": \"multi\",\n    \"confidence_threshold\": 0.2\n  },\n  \"inputs\": {\n    \"question\": \"결제 기능에 버그가 있어서 환불 처리가 안 됩니다. 기술팀에 문의하고 싶어요.\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Knowledge Retrieval - Semantic Search",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"knowledge_retrieval\",\n  \"config\": {\n    \"dataset_id\": \"workflow_kb\",\n    \"top_k\": 3,\n    \"output_format\": \"structured\",\n    \"search_mode\": \"semantic\"\n  },\n  \"inputs\": {\n    \"query\": \"Python 개발 가이드\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Knowledge Retrieval - Hybrid Search",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"knowledge_retrieval\",\n  \"config\": {\n    \"dataset_id\": \"tech_docs\",\n    \"top_k\": 2,\n    \"output_format\": \"text\",\n    \"search_mode\": \"hybrid\"\n  },\n  \"inputs\": {\n    \"query\": \"워크플로우 노드 연결 방법\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Agent Node - Report Generator",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"agent\",\n  \"config\": {\n    \"agent_id\": \"report_agent\",\n    \"agent_name\": \"AI Report Generator\",\n    \"mcp_tools\": [\"web_search\", \"data_analysis\", \"document_generator\"],\n    \"max_iterations\": 5\n  },\n  \"inputs\": {\n    \"task\": \"2024년 워크플로우 시장 동향 분석 보고서 작성\",\n    \"context\": {\n      \"format\": \"executive_summary\",\n      \"pages\": 5,\n      \"audience\": \"경영진\"\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Agent Node - Data Analysis",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"agent\",\n  \"config\": {\n    \"agent_id\": \"data_analyst\",\n    \"agent_name\": \"Data Analysis Specialist\",\n    \"mcp_tools\": [\"code_execution\", \"file_operations\", \"visualization\"],\n    \"max_iterations\": 10\n  },\n  \"inputs\": {\n    \"task\": \"고객 데이터 분석 및 인사이트 도출\",\n    \"context\": {\n      \"dataset\": \"customer_behavior.csv\",\n      \"period\": \"2024-Q1\",\n      \"metrics\": [\"retention\", \"conversion\", \"satisfaction\"]\n    }\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Parameter Extractor - User Info",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"parameter_extractor\",\n  \"config\": {\n    \"parameters\": [\n      {\"name\": \"name\", \"type\": \"string\", \"required\": true},\n      {\"name\": \"age\", \"type\": \"number\", \"required\": false},\n      {\"name\": \"email\", \"type\": \"string\", \"required\": true},\n      {\"name\": \"phone\", \"type\": \"string\", \"required\": false}\n    ]\n  },\n  \"inputs\": {\n    \"text\": \"안녕하세요, 저는 김철수라고 합니다. 나이는 32세이고 이메일은 kimcs@example.com입니다. 전화번호는 010-1234-5678입니다.\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test List Operator - Filter Operation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"list_operator\",\n  \"config\": {\n    \"operation\": \"filter\",\n    \"filter_value\": \"completed\"\n  },\n  \"inputs\": {\n    \"list\": [\"pending\", \"completed\", \"in_progress\", \"completed\", \"failed\"],\n    \"item\": null\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test List Operator - Map Operation",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"list_operator\",\n  \"config\": {\n    \"operation\": \"map\",\n    \"map_prefix\": \"processed_\"\n  },\n  \"inputs\": {\n    \"list\": [\"document1\", \"document2\", \"document3\"],\n    \"item\": null\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Iteration Node - Task Processing",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"iteration\",\n  \"config\": {\n    \"max_iterations\": 4\n  },\n  \"inputs\": {\n    \"items\": [\"이메일 발송\", \"데이터 백업\", \"보고서 생성\", \"알림 전송\", \"로그 정리\"]\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test Start Node - Session Initialize",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"start\",\n  \"config\": {},\n  \"inputs\": {\n    \"user_id\": \"user_12345\",\n    \"session_id\": \"sess_abcdef\",\n    \"timestamp\": \"2024-01-15T10:30:00Z\",\n    \"workflow_type\": \"customer_support\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Test End Node - Final Output",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"end\",\n  \"config\": {\n    \"outputs\": {\n      \"final_answer\": \"response_text\",\n      \"confidence_score\": \"confidence\",\n      \"processing_time\": \"duration\"\n    }\n  },\n  \"inputs\": {\n    \"response_text\": \"고객님의 문의사항이 성공적으로 처리되었습니다.\",\n    \"confidence\": 0.95,\n    \"duration\": \"2.3초\",\n    \"status\": \"completed\"\n  }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "test-node"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "info": {
+    "name": "Workflow Node Tester API",
+    "description": "워크플로우 노드별 테스트를 위한 Postman 컬렉션",
+    "version": "1.0.0"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8002"
+    }
+  ],
+  "item": [
+    {
+      "name": "API Status",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/",
+          "host": ["{{base_url}}"],
+          "path": [""]
+        }
+      }
+    },
+    {
+      "name": "Get Node Types",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/node-types",
+          "host": ["{{base_url}}"],
+          "path": ["node-types"]
+        }
+      }
+    },
+    {
+      "name": "LLM Node - Example",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/node-examples/llm",
+          "host": ["{{base_url}}"],
+          "path": ["node-examples", "llm"]
+        }
+      }
+    },
+    {
+      "name": "Code Node - Example",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/node-examples/code",
+          "host": ["{{base_url}}"],
+          "path": ["node-examples", "code"]
+        }
+      }
+    },
+    {
+      "name": "Test LLM Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"llm\",\n  \"node_config\": {\n    \"model\": \"gpt-3.5-turbo\",\n    \"prompt_template\": \"{{input}}에 대해 간단히 설명해주세요.\",\n    \"temperature\": 0.7\n  },\n  \"inputs\": {\n    \"input\": \"파이썬 프로그래밍\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": ["{{base_url}}"],
+          "path": ["test-node"]
+        }
+      }
+    },
+    {
+      "name": "Test Code Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"code\",\n  \"node_config\": {\n    \"code\": \"result = inputs['number'] * 2\\noutput = {'doubled': result}\",\n    \"code_language\": \"python3\"\n  },\n  \"inputs\": {\n    \"number\": 10\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": ["{{base_url}}"],
+          "path": ["test-node"]
+        }
+      }
+    },
+    {
+      "name": "Test Template Transform Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"template_transform\",\n  \"node_config\": {\n    \"template\": \"안녕하세요, {{name}}님! 오늘은 {{date}}입니다.\"\n  },\n  \"inputs\": {\n    \"name\": \"홍길동\",\n    \"date\": \"2024-01-15\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": ["{{base_url}}"],
+          "path": ["test-node"]
+        }
+      }
+    },
+    {
+      "name": "Test HTTP Request Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"http_request\",\n  \"node_config\": {\n    \"method\": \"GET\",\n    \"url\": \"https://api.github.com/users/octocat\",\n    \"headers\": {}\n  },\n  \"inputs\": {}\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": ["{{base_url}}"],
+          "path": ["test-node"]
+        }
+      }
+    },
+    {
+      "name": "Test Variable Assigner Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"variable_assigner\",\n  \"node_config\": {\n    \"assignments\": [\n      {\n        \"variable\": \"greeting\",\n        \"value\": \"안녕하세요\"\n      },\n      {\n        \"variable\": \"user_name\",\n        \"value\": \"{{name}}\"\n      }\n    ]\n  },\n  \"inputs\": {\n    \"name\": \"테스터\"\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": ["{{base_url}}"],
+          "path": ["test-node"]
+        }
+      }
+    },
+    {
+      "name": "Test IF-ELSE Node",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"node_type\": \"if_else\",\n  \"node_config\": {\n    \"conditions\": [\n      {\n        \"variable\": \"score\",\n        \"comparison_operator\": \"gt\",\n        \"value\": 80\n      }\n    ],\n    \"logical_operator\": \"and\"\n  },\n  \"inputs\": {\n    \"score\": 90\n  }\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/test-node",
+          "host": ["{{base_url}}"],
+          "path": ["test-node"]
+        }
+      }
+    },
+    {
+      "name": "Test Complete Workflow",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"graph\": {\n    \"nodes\": [\n      {\n        \"id\": \"start_node\",\n        \"data\": {\n          \"type\": \"start\"\n        }\n      },\n      {\n        \"id\": \"code_node\",\n        \"data\": {\n          \"type\": \"code\",\n          \"code\": \"result = inputs['number'] * 3\\noutput = {'result': result}\",\n          \"code_language\": \"python3\"\n        }\n      }\n    ],\n    \"edges\": [\n      {\n        \"id\": \"edge1\",\n        \"source\": \"start_node\",\n        \"target\": \"code_node\"\n      }\n    ]\n  },\n  \"inputs\": {\n    \"number\": 5\n  },\n  \"node_id\": \"code_node\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/run-node",
+          "host": ["{{base_url}}"],
+          "path": ["run-node"]
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pydantic
+httpx
+requests
+pandas
+numpy
+openai
+jinja2
+python-multipart
+pyyaml
